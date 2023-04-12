@@ -22,6 +22,8 @@ Route::prefix('user')->group(function() {
     Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
     Route::middleware('auth:api')->group(function() {
        Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+       Route::apiResource('books', \App\Http\Controllers\BookController::class)
+           ->only('index', 'show', 'store', 'destroy');
     });
 });
 

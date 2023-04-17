@@ -32,4 +32,9 @@ class BookController extends Controller
         }
         return $books->paginate();  //資料太多的話不建議all()，會改用paginate()
     }
+
+    public function show(Request $request, Book $book) {
+        $this->authorize('view', [Book::class, $book]);
+        return $book;
+    }
 }

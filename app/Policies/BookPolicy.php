@@ -47,7 +47,7 @@ class BookPolicy
      */
     public function delete(User $user, Book $book): bool
     {
-        //
+        return $user->isAdmin() || $user->getKey() === $book->user_id;
     }
 
     /**

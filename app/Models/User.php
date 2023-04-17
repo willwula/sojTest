@@ -47,9 +47,6 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function books() {
-        return $this->hasMany(Book::class);
-    }
     public function getJWTIdentifier()
     {
         // TODO: Implement getJWTIdentifier() method.
@@ -60,5 +57,31 @@ class User extends Authenticatable implements JWTSubject
     {
         // TODO: Implement getJWTCustomClaims() method.
         return [];
+    }
+
+    public function books() {
+        return $this->hasMany(Book::class);
+    }
+
+    public function isAdmin() {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isNormalUser() {
+        return $this->role === self::ROLE_NORMAL;
+    }
+    public function hasPermissionToCreateBook()
+    {
+        return $this->isAdmin() || $this->isNormalUser();
+    }
+
+    public function hasPermissionToViewAnyBooks()
+    {
+        return $this->isAdmin() || $this->isNormalUser();
+    }
+
+    public function hasPermissionToViewBook()
+    {
+        return $this->isAdmin() || $this->isNormalUser();
     }
 }

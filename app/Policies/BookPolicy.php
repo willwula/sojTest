@@ -13,7 +13,7 @@ class BookPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermissionToViewAnyBooks();
     }
 
     /**
@@ -27,9 +27,11 @@ class BookPolicy
     /**
      * Determine whether the user can create models.
      */
+//Policy 裏面的 create 去確認 User 是否有權限
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermissionToCreateBook();  //在 app/Models/User.php 定義權限
+        // 這裡的 user 是從 middleware('auth') 來的
     }
 
     /**

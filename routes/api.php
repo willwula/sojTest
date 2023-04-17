@@ -23,7 +23,7 @@ Route::prefix('user')->group(function() {
     Route::middleware('auth:api')->group(function() {
        Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
        Route::apiResource('books', \App\Http\Controllers\BookController::class)
-           ->only('index', 'show', 'store', 'destroy');
+           ->only('index', 'show', 'store', 'update', 'destroy');
     });
 });
 

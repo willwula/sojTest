@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookCollection;
+use App\Http\Resources\BookResource;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +17,9 @@ class BookController extends Controller
             'name' => 'required|string|max:255',
             'author' => 'required|string|max:255',
         ]);
-        return $user->books()->create($validated);
+//        return $user->books()->create($validated); //原本的情況
+         return BookResource::make($user->books()->create($validated)); //使用resource
+        // 這裡使用 make() ，底層是會變成 new BookResource，BookResource把原本的東西實例化出來
 
         //測試用
 //        return $this->authorize('create', [Book::class]);
@@ -25,12 +29,12 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $this->authorize('viewAny', [Book::class]);  //$this->authorize('policy動作', [連結的 Model]); BookPolicy.php
-        $books = Book::latest(); //照時間排序
+        $books = Book::latest()->with('user'); //照時間排序
         if ($request->boolean('owned')) { //如果前端回傳的 header 有包含'owned'內容
             $books->where('user_id', Auth::user()->getKey()); // 只能看到自己的書
             // $books中，挑選 書本 user_id = 登入使用者id 的書
         }
-        return $books->paginate();  //資料太多的話不建議all()，會改用paginate()
+        return BookCollection::make($books->paginate());  //資料太多的話不建議all()，會改用paginate()
     }
 
     public function update(Request $request, Book $book) {

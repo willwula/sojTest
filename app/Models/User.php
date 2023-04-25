@@ -28,6 +28,8 @@ class User extends Authenticatable
         'email',
         'password',
         'github_id',
+        'google_id',
+        'email_verified_at',
     ];
 
     /**

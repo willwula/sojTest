@@ -33,8 +33,11 @@
             </div>
 
             <div class=" flex items-center justify-center gap-x-4">
+                <a>Or login with </a> &ensp;
                 <a href="/auth/github"
-                   class="text-sm text-gray-500">Or login with Github <span aria-hidden="true">→</span></a>
+                   class="text-sm text-gray-500">Github, <span aria-hidden="true">→</span></a>
+                <a href="/auth/google"
+                   class="text-sm text-gray-500">Google<span aria-hidden="true">→</span></a>
             </div>
 
             <div class="flex items-center justify-end mt-4">

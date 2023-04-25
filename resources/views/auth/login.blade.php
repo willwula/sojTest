@@ -38,6 +38,8 @@
                    class="text-sm text-gray-500">Github, <span aria-hidden="true">→</span></a>
                 <a href="/auth/google"
                    class="text-sm text-gray-500">Google<span aria-hidden="true">→</span></a>
+                <a href="/auth/facebook"
+                   class="text-sm text-gray-500">Facebook<span aria-hidden="true">→</span></a>
             </div>
 
             <div class="flex items-center justify-end mt-4">

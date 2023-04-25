@@ -11,6 +11,7 @@ class ThirdPartyAuthController extends Controller
 {
     public function redirectToProvider($provider)
     {
+//        dd($provider);
 //        dd(Socialite::driver($provider));
         return Socialite::driver($provider)->redirect();
     }

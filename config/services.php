@@ -48,4 +48,10 @@ return [
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => env('FACEBOOK_REDIRECT_URI')
     ],
+
+    'line' => [
+        'client_id' => env('LINE_CLIENT_ID'),
+        'client_secret' => env('LINE_CLIENT_SECRET'),
+        'redirect' => env('LINE_REDIRECT')
+    ],
 ];
